@@ -1,52 +1,18 @@
 import { ethers } from "hardhat";
 
 async function main() {
-    /*
-    const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-    const unlockTime = currentTimestampInSeconds + 60;
-
-    const lockedAmount = ethers.parseEther("0.001");
-
-    const lock = await ethers.deployContract("Lock", [unlockTime]);
-
-    await lock.waitForDeployment();
-
-    console.log(
-        `Lock with deployed to ${lock.target}`
-    );
-    */
-
     const [signer] = await ethers.getSigners();
 
     const UNISWAP_ADDRESS = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
     const UNISWAP_FACTORY_ADDRESS = "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f";
 
     // Set the swap parameters
-    /*
-    const amountIn = ethers.parseEther("1"); // Amount of ETH to swap
-    const amountOutMin = 0; // Minimum amount of tokens to receive
-    const path = ["0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", "0x6B175474E89094C44Da98b954EedeAC495271d0F"]; // Path of tokens to swap (e.g., WETH to DAI)
-    const to = signer.address; // Address to receive the swapped tokens
-    const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
-    const tokenA_ADDRESS = "";
-    const tokenB_ADDRESS = "";
-    */
-
     const WETH_ADDRESS = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
     const DAI_ADDRESS = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 
-    // Get the UniswapV2Router02 contract
+    // Get the UniswapV2Router02 and UniSwapv2Factory contracts
     const swap = await ethers.getContractAt("IUniswapV2Router01", UNISWAP_ADDRESS);
     const swapFactory = await ethers.getContractAt("IUniswapV2Factory", UNISWAP_FACTORY_ADDRESS);
-    // const [amountADesired, amountBDesired, amountAMin, amountBMin] = [
-    //     ethers.parseEther("1"), ethers.parseEther("2"),
-    //     ethers.parseEther("0.5"), ethers.parseEther("1")
-    // ];
-    // swap.addLiquidity(path[0], path[1], amountADesired, amountBDesired, amountAMin, amountBMin, to, deadline);
-
-    // const routerAddress = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"; // Replace with the actual contract address
-    // const routerABI = ["function swapExactETHForTokens(uint256, address[], address, uint256) external payable returns (uint256[] memory)"];
-    // const router = new ethers.getContractAt(routerAddress, routerABI, signer);
 
     async function interaceWithAddLiquidity() {
         const tokenA = WETH_ADDRESS;
