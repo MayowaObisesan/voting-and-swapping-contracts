@@ -77,6 +77,6 @@ contract Voting {
      */
     function winnerName() external view returns (string memory winnerName_) {
         winnerName_ = proposals[winningProposal()].name;
-        // TOOD: If there is a draw in the vote result
+        // TOOD: What If there is a draw in the vote result? Oh boy...
     }
 }
